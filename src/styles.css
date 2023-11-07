@@ -13,6 +13,15 @@ body{
     padding: 0;
     margin: 0;
     font-family: sans-serif;
+    scroll-behavior: smooth;
+    transition: all 0.25s;
+}
+
+.screen{
+    height: fit-content;
+    transition: all 0.25s;
+    opacity: 0;
+    display: none;
 }
 
 .centerer{
@@ -141,4 +150,10 @@ h1{
 .continue_button:hover{
     box-shadow: 0 5px 5px #bbbbbb;
     translate: 0 -5px;
+}
+
+.required_fields_message{
+    color: #cc0000;
+    background-color: #ffdddd;
+    padding: 15px 0 15px 0;
 }

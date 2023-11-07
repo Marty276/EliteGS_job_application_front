@@ -1,10 +1,17 @@
-import { SIMPLE_INPUT, DOUBLE_SIMPLE_INPUT, TRIPLE_SIMPLE_INPUT, SIMPLE_DATE_INPUT, SIMPLE_EMAIL_INPUT, CONTINUE_BUTTON } from './simple_components';
+import { SIMPLE_INPUT,
+    DOUBLE_SIMPLE_INPUT,
+    TRIPLE_SIMPLE_INPUT,
+    SIMPLE_DATE_INPUT,
+    SIMPLE_EMAIL_INPUT,
+    CONTINUE_BUTTON,
+    EIGHT_CHECKBOX_INPUT,
+} from './simple_components';
 
-export const SCREEN_1 = ()=>{
-    return <div id="Screen_1">
+export const SCREEN_1 = ({ continue_func })=>{
+    return <div id="Screen_1" className='screen'>
         <h2>Personal info</h2>
-        <p>Fields marked with * are required to continue and send the application.</p>
-
+        <p id="required_fields_message_1">Fields marked with * are required to continue and send the application.</p>
+        
         <SIMPLE_INPUT
             id = "full_name"
             title = "Full name *"
@@ -78,18 +85,62 @@ export const SCREEN_1 = ()=>{
             title = "E-mail address *"
             max_length = {254}
         />
-        <div className='centerer'><CONTINUE_BUTTON continue_func={()=>console.log("SWSS")}/></div>
+        <div className='centerer'><CONTINUE_BUTTON continue_func={()=>continue_func()}/></div>
     </div>
 }
 
 export const SCREEN_2 = () => {
-    return <h1>Screen_2</h1>
+    return <div id="Screen_2" className="screen">
+        <h2>SCREEN 2</h2>
+        <p id="required_fields_message_2">Fields marked with * are required to continue and send the application.</p>
+
+        <EIGHT_CHECKBOX_INPUT
+            title = "Are you unavailable to work any of these days? *"
+            description = "(Mark the days you can't work or mark 'I have no preference')"
+            title_1 = "I have no preference" id_1 = "no_days_preference"
+            title_2 = "Monday" id_2 = "monday"
+            title_3 = "Tuesday" id_3 = "tuesday"
+            title_4 = "Wednesday" id_4 = "wednesday"
+            title_5 = "Thursday" id_5 = "thursday"
+            title_6 = "Friday" id_6 = "friday"
+            title_7 = "Saturday" id_7 = "saturday"
+            title_8 = "Sunday" id_8 = "sunday"
+        />
+
+
+        <SIMPLE_INPUT
+            id = "hours_per_week"
+            title = "How many hours per week are you looking to work? *"
+            max_length = {3}
+            is_numeric = {true}
+        />
+    </div>
 }
 
 export const SCREEN_3 = () => {
-    return <h1>Screen_3</h1>
+    return <div id="Screen_3" className="screen">
+        <h2>SCREEN 3</h2>
+        <p id="required_fields_message_3">Fields marked with * are required to continue and send the application.</p>
+
+        <h2>HEY HEY HEY</h2>
+        <h2>HEY HEY HEY</h2>
+        <h2>HEY HEY HEY</h2>
+        <h2>HEY HEY HEY</h2>
+        <h2>HEY HEY HEY</h2>
+        <h2>HEY HEY HEY</h2>
+        <h2>HEY HEY HEY</h2>
+    </div>
 }
 
 export const SCREEN_4 = () => {
-    return <h1>Screen_4</h1>
+    return <div id="Screen_4" className="screen">
+        <h2>SCREEN 4</h2>
+        <h2>HEY HEY HEY</h2>
+        <h2>HEY HEY HEY</h2>
+        <h2>HEY HEY HEY</h2>
+        <h2>HEY HEY HEY</h2>
+        <h2>HEY HEY HEY</h2>
+        <h2>HEY HEY HEY</h2>
+        <h2>HEY HEY HEY</h2>
+    </div>
 }

@@ -35,3 +35,38 @@ export const optional_fields = [
     "convicted_explanation",
     "glazier_experience"
 ]
+
+export function activate_required_fields_message(n){
+    document.getElementById("required_fields_message_" + n.toString()).className = "required_fields_message";
+    go_to_top();
+    return true;
+}
+
+export function deactivate_required_fields_message(n){
+    document.getElementById("required_fields_message_" + n.toString()).className = "";
+    go_to_top();
+}
+
+export function go_to_top(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+export function active_initial_screen(n){
+    document.getElementById("Screen_" + n.toString()).style.display = "block";
+    document.getElementById("Screen_" + n.toString()).style.opacity = "1";
+}
+
+export function changeScreen(screen_active, new_screen){
+
+    screen_active = document.getElementById("Screen_" + screen_active.toString());
+    new_screen = document.getElementById("Screen_" + new_screen.toString());
+    
+    screen_active.style.opacity = "0";
+    
+    setTimeout(() => {
+        screen_active.style.display = "none";
+        new_screen.style.display = "block";
+        new_screen.style.opacity = "1";
+    }, 250);
+
+}

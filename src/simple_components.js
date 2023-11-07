@@ -88,6 +88,10 @@ export const SIMPLE_EMAIL_INPUT = ({ title, id, is_numeric, max_length }) => {
     </div>
 }
 
+export const EIGHT_CHECKBOX_INPUT = (props)=>{
+    return <h2>{props.title}</h2>
+}
+
 export const CONTINUE_BUTTON = ({ continue_func }) => {
     return <button className="continue_button" onClick={()=>{continue_func()}}>Continue</button>
 }
