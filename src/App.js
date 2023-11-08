@@ -6,49 +6,27 @@ import { empty_request_body,
     deactivate_required_fields_message,
     active_initial_screen,
     changeScreen,
+    collect_values,
 } from './tools';
 import {  } from './simple_components';
 import './styles.css';
 
 var request_body = empty_request_body;
-var screen_active = 2;
+var active_screen = 1;
 
 export const APP = () => {
-
-    function collect_screen_1(){
-
-        const entries = Object.entries(request_body);
-        let incomplete = false;
-        for(let i = 0; i < 11; i++){
-        
-            let value = document.getElementById(entries[i][0]).value;
-            
-            if(value == ""){
-                if(!optional_fields.includes(entries[i][0])){
-                    incomplete = activate_required_fields_message(1);
-                }else{
-                    request_body[entries[i][0]] = value;
-                }
-            }
-        }
-
-        return !incomplete;
-    }
-
     
-    function go_to_2(){
-        
-        if(screen_active == 1){
-            if(collect_screen_1()){
-                deactivate_required_fields_message(1);
-                changeScreen(1, 2)
-            }
+    function next_screen(n, first, last){
+        let can_continue;
+        [can_continue, request_body]= collect_values(request_body, n, first, last);
+        if(can_continue){
+            deactivate_required_fields_message(n);
+            changeScreen(n, n + 1);
         }
-
     }
 
     useEffect(()=>{
-        active_initial_screen(screen_active);
+        active_initial_screen(active_screen);
     }, []);
     
     return <>
@@ -57,8 +35,8 @@ export const APP = () => {
 
         <div className='form_container'>
             <div className='form_content_container'>
-                <SCREEN_1 continue_func={()=>go_to_2()}/>
-                <SCREEN_2/>
+                <SCREEN_1 continue_func={()=>next_screen(1, 0, 11)}/>
+                <SCREEN_2 continue_func={()=>next_screen(2, 11, 16)}/>
                 <SCREEN_3/>
                 <SCREEN_4/>
             </div>

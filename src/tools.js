@@ -31,7 +31,6 @@ export const empty_request_body = {
 
 export const optional_fields = [
     "alternative_phone",
-    "days_unavailable",
     "convicted_explanation",
     "glazier_experience"
 ]
@@ -69,4 +68,36 @@ export function changeScreen(screen_active, new_screen){
         new_screen.style.opacity = "1";
     }, 250);
 
+}
+
+export function update_checkbox_data(n, id, titles){
+    let data = [];
+    for(let i = 0; i < n; i ++){
+        let cb = document.getElementById(id + "_cb_" + (i + 1).toString());
+        if(cb.className === "marked_checkbox"){
+            data.push(titles[i])
+        }
+    }
+    document.getElementById(id).value = data.join(", ");
+}
+
+export function collect_values(request_body, n, first, last){
+
+    const entries = Object.entries(request_body);
+    let incomplete = false;
+    for(let i = first; i < last; i++){
+    
+        let value = document.getElementById(entries[i][0]).value;
+        
+        if(value !== ""){
+            request_body[entries[i][0]] = value;
+        }else{
+            if(!optional_fields.includes(entries[i][0])){
+                incomplete = activate_required_fields_message(n);
+            }else{
+                request_body[entries[i][0]] = value;
+            }
+        }
+    }
+    return [!incomplete, request_body];
 }
