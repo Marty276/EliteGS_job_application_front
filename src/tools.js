@@ -4,35 +4,44 @@ export function clear_numeric_inputs(input){
 }
 
 export const empty_request_body = {
-    full_name : null,
-    ssn : null,
-    address : null,
-    city : null,
-    state : null,
-    zip_code : null,
-    birth_date : null,
-    drivers_license_number : null,
-    email_address : null,
-    phone : null,
-    alternative_phone : null,
-    
-    days_unavailable : null,
-    full_or_part_time : null,
-    day_or_night_shift : null,
-    hours_per_week : null,
-    date_available_to_begin : null,
-
-    have_been_employed_with_us : null,
-    is_authorized_to_work_in_the_us : null,
-    have_been_convicted : null,
-    convicted_explanation : null,
-    glazier_experience : null,
+    "full_name": "",
+    "ssn": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip_code": 0,
+    "birth_date": "",
+    "drivers_license_number": "",
+    "phone": "",
+    "alternative_phone": "",
+    "email_address": "",
+    "days_unavailable": "",
+    "full_or_part_time": "",
+    "day_or_night_shift": "",
+    "hours_per_week": 0,
+    "date_available_to_begin": "",
+    "have_been_employed_with_us": null,
+    "is_authorized_to_work_in_the_us": null,
+    "have_been_convicted": null,
+    "convicted_explanation": "",
+    "glazier_experience": "",
 }
 
-export const optional_fields = [
+const optional_fields = [
     "alternative_phone",
     "convicted_explanation",
     "glazier_experience"
+]
+
+const numeric_fields = [
+    "zip_code",
+    "hours_per_week"
+]
+
+const boolean_fields = [
+    "have_been_employed_with_us",
+    "is_authorized_to_work_in_the_us",
+    "have_been_convicted"
 ]
 
 export function activate_required_fields_message(n){
@@ -64,8 +73,10 @@ export function changeScreen(screen_active, new_screen){
     
     setTimeout(() => {
         screen_active.style.display = "none";
-        new_screen.style.display = "block";
-        new_screen.style.opacity = "1";
+        if(new_screen){
+            new_screen.style.display = "block";
+            new_screen.style.opacity = "1";
+        }
     }, 250);
 
 }
@@ -90,9 +101,16 @@ export function collect_values(request_body, n, first, last){
         let value = document.getElementById(entries[i][0]).value;
         
         if(value !== ""){
-            request_body[entries[i][0]] = value;
+            if(numeric_fields.includes(entries[i][0])){
+                request_body[entries[i][0]] = parseInt(value);
+            }else if(boolean_fields.includes(entries[i][0])){
+                request_body[entries[i][0]] = value === "Yes" ? true : false;
+            }else{
+                request_body[entries[i][0]] = value;
+            }
         }else{
             if(!optional_fields.includes(entries[i][0])){
+                console.log(value)
                 incomplete = activate_required_fields_message(n);
             }else{
                 request_body[entries[i][0]] = value;

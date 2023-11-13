@@ -153,11 +153,20 @@ export const EIGHT_CHECKBOX_INPUT = ({ title, description, id, titles, save, tit
     </div>
 }
 
-export const TWO_CHECKBOX_INPUT = ({ title, description, id, save, titles, title_1, id_1, title_2, id_2})=>{
+export const TWO_CHECKBOX_INPUT = ({ title, description, id, save, titles, multi_selection, title_1, id_1, title_2, id_2})=>{
     
     function mark_unmark_checkboxes(box){
+        if(!multi_selection){clear_specific_checkboxes(box);}
         box.className = box.className === "checkbox" ? "marked_checkbox" : "checkbox";
         update_checkbox_data(2, id, titles);
+    }
+
+    function clear_specific_checkboxes(box){
+        if(box.id === id + "_cb_1" && box.className === "checkbox"){
+            document.getElementById(id + "_cb_2").className = "checkbox";
+        }else if(box.id !== id + "_cb_1" && document.getElementById(id + "_cb_1").className === "marked_checkbox"){
+            document.getElementById(id + "_cb_1").className = "checkbox";
+        }
     }
 
     return <div className='many_checkbox_cont'>
@@ -177,6 +186,22 @@ export const TWO_CHECKBOX_INPUT = ({ title, description, id, save, titles, title
     </div>
 }
 
+export const SIMPLE_TEXTAREA_INPUT = ({ title, id, max_length }) => {
+
+    return <div className="simple_input">
+        <h4>{title}</h4>
+        <textarea name={id}
+            id={id}
+            maxLength={max_length}
+            placeholder=""
+        ></textarea>
+    </div>
+}
+
 export const CONTINUE_BUTTON = ({ continue_func }) => {
     return <button className="continue_button" onClick={()=>{continue_func()}}>Continue</button>
+}
+
+export const GO_BACK_BUTTON = ({ go_back_func }) => {
+    return <button className="go_back_button" onClick={()=>{go_back_func()}}>Go back</button>
 }

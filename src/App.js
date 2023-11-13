@@ -7,22 +7,32 @@ import { empty_request_body,
     active_initial_screen,
     changeScreen,
     collect_values,
+    go_to_top,
 } from './tools';
 import {  } from './simple_components';
 import './styles.css';
 
 var request_body = empty_request_body;
-var active_screen = 1;
+
 
 export const APP = () => {
     
+    const [active_screen, setActive_screen] = useState(1);
+
     function next_screen(n, first, last){
         let can_continue;
         [can_continue, request_body]= collect_values(request_body, n, first, last);
         if(can_continue){
             deactivate_required_fields_message(n);
             changeScreen(n, n + 1);
+            setActive_screen(n + 1);
         }
+    }
+
+    function go_back(n){
+        go_to_top();
+        changeScreen(n, n - 1);
+        setActive_screen(n - 1);
     }
 
     useEffect(()=>{
@@ -35,10 +45,10 @@ export const APP = () => {
 
         <div className='form_container'>
             <div className='form_content_container'>
-                <SCREEN_1 continue_func={()=>next_screen(1, 0, 11)}/>
-                <SCREEN_2 continue_func={()=>next_screen(2, 11, 16)}/>
-                <SCREEN_3/>
-                <SCREEN_4/>
+                <SCREEN_1 continue_func = {()=>next_screen(1, 0, 11)}/>
+                <SCREEN_2 continue_func = {()=>next_screen(2, 11, 16)} go_back_func = {()=>go_back(2)}/>
+                <SCREEN_3 continue_func = {()=>next_screen(3, 16, 21)} go_back_func = {()=>go_back(3)}/>
+                {active_screen == 4 ? <SCREEN_4 request_body = {request_body} go_back_func = {()=>go_back(4)}/> : <></>}
             </div>
         </div>
 

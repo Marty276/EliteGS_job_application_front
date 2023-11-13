@@ -4,8 +4,10 @@ import { SIMPLE_INPUT,
     SIMPLE_DATE_INPUT,
     SIMPLE_EMAIL_INPUT,
     CONTINUE_BUTTON,
+    GO_BACK_BUTTON,
     EIGHT_CHECKBOX_INPUT,
     TWO_CHECKBOX_INPUT,
+    SIMPLE_TEXTAREA_INPUT,
 } from './simple_components';
 import { useEffect, useState } from 'react';
 
@@ -91,11 +93,11 @@ export const SCREEN_1 = ({ continue_func })=>{
     </div>
 }
 
-export const SCREEN_2 = ({ continue_func }) => {
+export const SCREEN_2 = ({ continue_func, go_back_func }) => {
 
     return <div id="Screen_2" className="screen">
 
-        <h2>SCREEN 2</h2>
+        <h2>Job type</h2>
         <p id="required_fields_message_2">Fields marked with * are required to continue and send the application.</p>
 
         <EIGHT_CHECKBOX_INPUT
@@ -120,6 +122,7 @@ export const SCREEN_2 = ({ continue_func }) => {
             title_2 = "Full-time"
             id = "full_or_part_time"
             titles = {["Part-time", "Full-time"]}
+            multi_selection = {true}
         />
 
         <TWO_CHECKBOX_INPUT
@@ -129,6 +132,7 @@ export const SCREEN_2 = ({ continue_func }) => {
             title_2 = "Night shift"
             id = "day_or_night_shift"
             titles = {["Day Shift", "Night Shift"]}
+            multi_selection = {true}
         />
 
         <SIMPLE_INPUT
@@ -142,34 +146,101 @@ export const SCREEN_2 = ({ continue_func }) => {
             id = "date_available_to_begin"
             title = "Date available to begin *"
         />
-        <div className='centerer'><CONTINUE_BUTTON continue_func={()=>continue_func()}/></div>
+        <div className='centerer'>
+            <GO_BACK_BUTTON go_back_func={()=>go_back_func()}/>
+            <CONTINUE_BUTTON continue_func={()=>continue_func()}/>
+        </div>
     </div>
 }
 
-export const SCREEN_3 = () => {
+export const SCREEN_3 = ({ continue_func, go_back_func }) => {
     return <div id="Screen_3" className="screen">
-        <h2>SCREEN 3</h2>
+        <h2>Additional info</h2>
         <p id="required_fields_message_3">Fields marked with * are required to continue and send the application.</p>
 
-        <h2>HEY HEY HEY</h2>
-        <h2>HEY HEY HEY</h2>
-        <h2>HEY HEY HEY</h2>
-        <h2>HEY HEY HEY</h2>
-        <h2>HEY HEY HEY</h2>
-        <h2>HEY HEY HEY</h2>
-        <h2>HEY HEY HEY</h2>
+        <TWO_CHECKBOX_INPUT
+            title = "Have you ever been employed with us in the past? *"
+            description= "(Mark an option or both if you have no preference)"
+            title_1 = "Yes"
+            title_2 = "No"
+            id = "have_been_employed_with_us"
+            titles = {["Yes", "No"]}
+            multi_selection = {false}
+        />
+
+        <TWO_CHECKBOX_INPUT
+            title = "Are you authorized to work in the US? *"
+            description= "(Mark only the correct answer)"
+            title_1 = "Yes"
+            title_2 = "No"
+            id = "is_authorized_to_work_in_the_us"
+            titles = {["Yes", "No"]}
+            multi_selection = {false}
+        />
+
+        <TWO_CHECKBOX_INPUT
+            title = "Have you ever been convicted of a felony? *"
+            description= "(Mark only the correct answer)"
+            title_1 = "Yes"
+            title_2 = "No"
+            id = "have_been_convicted"
+            titles = {["Yes", "No"]}
+            multi_selection = {false}
+        />
+
+        <SIMPLE_TEXTAREA_INPUT
+            id = "convicted_explanation"
+            title = "If so, please explain:"
+            max_length = {1000}
+        />
+
+        <SIMPLE_TEXTAREA_INPUT
+            id = "glazier_experience"
+            title = "List previous experience as a glazier:"
+            max_length = {1000}
+        />
+
+        <div className='centerer'>
+            <GO_BACK_BUTTON go_back_func={()=>go_back_func()}/>
+            <CONTINUE_BUTTON continue_func={()=>continue_func()}/>
+        </div>
     </div>
 }
 
-export const SCREEN_4 = () => {
-    return <div id="Screen_4" className="screen">
-        <h2>SCREEN 4</h2>
-        <h2>HEY HEY HEY</h2>
-        <h2>HEY HEY HEY</h2>
-        <h2>HEY HEY HEY</h2>
-        <h2>HEY HEY HEY</h2>
-        <h2>HEY HEY HEY</h2>
-        <h2>HEY HEY HEY</h2>
-        <h2>HEY HEY HEY</h2>
+export const SCREEN_4 = ({ request_body, go_back_func }) => {
+
+    const [sent, setSent] = useState(false);
+    const [error, setError] = useState(false);
+
+    useEffect(()=>{
+        fetch("https://elitejs-job-applications-api.onrender.com/api/applications/", {
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify(request_body)
+        })
+            .then(response => {
+                setSent(response.ok);
+                setError(!response.ok)
+            })
+            .catch(error => {console.log(error)})
+    }, [])
+
+    return <div id="Screen_4" className="screen_4">
+        <h2>{sent ? "Your job application was succesfully sent." :
+        error ? "it seems like an error has ocurred." :
+        "Your job application is being send."}</h2>
+        <p>{sent ?
+        "You will receive a message soon!"  : 
+        error ? "please try again. If the error consists, please contact us at contact@eliteglass-services.com":
+        ""}</p>
+        <p>{sent ? "You can close this tab now." :
+        error ? "" :
+        "Please don't close this tab before it is send"}</p>
+
+        <div className='centerer'>{sent ? <img alt="" className='send_check_icon'/> : <></>}</div>
+        <GO_BACK_BUTTON go_back_func={()=>go_back_func()}/>
+
     </div>
 }
