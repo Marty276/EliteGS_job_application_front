@@ -110,7 +110,6 @@ export function collect_values(request_body, n, first, last){
             }
         }else{
             if(!optional_fields.includes(entries[i][0])){
-                console.log(value)
                 incomplete = activate_required_fields_message(n);
             }else{
                 request_body[entries[i][0]] = value;

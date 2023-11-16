@@ -213,7 +213,7 @@ export const SCREEN_4 = ({ request_body, go_back_func }) => {
     const [error, setError] = useState(false);
 
     useEffect(()=>{
-        fetch("https://elitejs-job-applications-api.onrender.com/api/applications/", {
+        fetch("https://elitegs-job-applications-api.onrender.com/api/applications/", {
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json'
@@ -224,8 +224,8 @@ export const SCREEN_4 = ({ request_body, go_back_func }) => {
                 setSent(response.ok);
                 setError(!response.ok)
             })
-            .catch(error => {console.log(error)})
-    }, [])
+            .catch(error => {setError(error)})
+    })
 
     return <div id="Screen_4" className="screen_4">
         <h2>{sent ? "Your job application was succesfully sent." :
@@ -240,7 +240,6 @@ export const SCREEN_4 = ({ request_body, go_back_func }) => {
         "Please don't close this tab before it is send"}</p>
 
         <div className='centerer'>{sent ? <img alt="" className='send_check_icon'/> : <></>}</div>
-        <GO_BACK_BUTTON go_back_func={()=>go_back_func()}/>
 
     </div>
 }

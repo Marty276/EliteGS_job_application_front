@@ -1,15 +1,12 @@
 import { useState, useEffect } from 'react';
 import { SCREEN_1, SCREEN_2, SCREEN_3, SCREEN_4 } from './screens';
 import { empty_request_body,
-    optional_fields,
-    activate_required_fields_message,
     deactivate_required_fields_message,
     active_initial_screen,
     changeScreen,
     collect_values,
     go_to_top,
 } from './tools';
-import {  } from './simple_components';
 import './styles.css';
 
 var request_body = empty_request_body;
@@ -37,7 +34,7 @@ export const APP = () => {
 
     useEffect(()=>{
         active_initial_screen(active_screen);
-    }, []);
+    });
     
     return <>
         <div className='centerer'><img alt="" src='logo.svg' className='logo'></img></div>
@@ -48,7 +45,7 @@ export const APP = () => {
                 <SCREEN_1 continue_func = {()=>next_screen(1, 0, 11)}/>
                 <SCREEN_2 continue_func = {()=>next_screen(2, 11, 16)} go_back_func = {()=>go_back(2)}/>
                 <SCREEN_3 continue_func = {()=>next_screen(3, 16, 21)} go_back_func = {()=>go_back(3)}/>
-                {active_screen == 4 ? <SCREEN_4 request_body = {request_body} go_back_func = {()=>go_back(4)}/> : <></>}
+                {active_screen === 4 ? <SCREEN_4 request_body = {request_body} go_back_func = {()=>go_back(4)}/> : <></>}
             </div>
         </div>
 
