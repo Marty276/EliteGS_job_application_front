@@ -14,7 +14,7 @@ var request_body = empty_request_body;
 
 export const APP = () => {
     
-    const [active_screen, setActive_screen] = useState(2);
+    const [active_screen, setActive_screen] = useState(1);
 
     function next_screen(n, first, last){
         let can_continue;
