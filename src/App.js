@@ -14,7 +14,7 @@ var request_body = empty_request_body;
 
 export const APP = () => {
     
-    const [active_screen, setActive_screen] = useState(1);
+    const [active_screen, setActive_screen] = useState(2);
 
     function next_screen(n, first, last){
         let can_continue;
@@ -37,9 +37,8 @@ export const APP = () => {
     });
     
     return <>
-        <div className='centerer'><img alt="" src='logo.svg' className='logo'></img></div>
+        <div className='centerer'><img alt="" src='./job_application/logo.svg' className='logo'></img></div>
         <h1>Job application</h1>
-
         <div className='form_container'>
             <div className='form_content_container'>
                 <SCREEN_1 continue_func = {()=>next_screen(1, 0, 11)}/>
@@ -50,7 +49,7 @@ export const APP = () => {
         </div>
 
         <div className='footer'>
-            <img alt="" className='footer_logo' src='logo.svg'/>
+            <img alt="" className='footer_logo' src='./job_application/logo.svg'/>
             <div className='footer_text'>
                 <h4>Contact Us:</h4>
                 <p>Phone:<br/>+1 (407) 486-4206</p>

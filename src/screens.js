@@ -228,7 +228,7 @@ export const SCREEN_4 = ({ request_body, go_back_func }) => {
     })
 
     return <div id="Screen_4" className="screen_4">
-        <h2>{sent ? "Your job application was succesfully sent." :
+        {/* <h2>{sent ? "Your job application was succesfully sent." :
         error ? "it seems like an error has ocurred." :
         "Your job application is being send."}</h2>
         <p>{sent ?
@@ -237,7 +237,11 @@ export const SCREEN_4 = ({ request_body, go_back_func }) => {
         ""}</p>
         <p>{sent ? "You can close this tab now." :
         error ? "" :
-        "Please don't close this tab before it is send"}</p>
+        "Please don't close this tab before it is send"}</p> */}
+
+        <h2>Your job application was succesfully sent.</h2>
+        <p>You will receive a message soon!</p>
+        <div className='centerer'><img alt="" className='send_check_icon'/></div>
 
         <div className='centerer'>{sent ? <img alt="" className='send_check_icon'/> : <></>}</div>
 
