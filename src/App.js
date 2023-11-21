@@ -37,7 +37,7 @@ export const APP = () => {
     });
     
     return <>
-        <div className='centerer'><img alt="" src='./job_application/logo.svg' className='logo'></img></div>
+        <div className='centerer'><img alt="" src='./logo.svg' className='logo'></img></div>
         <h1>Job application</h1>
         <div className='form_container'>
             <div className='form_content_container'>
@@ -49,7 +49,7 @@ export const APP = () => {
         </div>
 
         <div className='footer'>
-            <img alt="" className='footer_logo' src='./job_application/logo.svg'/>
+            <img alt="" className='footer_logo' src='./logo.svg'/>
             <div className='footer_text'>
                 <h4>Contact Us:</h4>
                 <p>Phone:<br/>+1 (407) 486-4206</p>
