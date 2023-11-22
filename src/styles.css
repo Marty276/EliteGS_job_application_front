@@ -86,11 +86,13 @@ h1{
 }
 
 .footer_logo{
-    margin: 0 80px 0 80px;
+    width: 45%;
     height: 180px;
 }
 
 .footer_text{
+    width: 45%;
+    margin: 0 5% 0 5%;
     color: var(--white);
 }
 
@@ -194,6 +196,9 @@ h1{
     width: 48%;
     padding: 5px 0 5px 0;
     margin: 10px 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .checkbox_input label{
@@ -205,7 +210,6 @@ h1{
     height: 25px;
     width: 25px;
     background-color: var(--white);
-    float: right;
     margin: 0 5px 0 0;
 }
 
@@ -242,8 +246,7 @@ h1{
     height: 70px;
 }
 
-/* Teléfonos pequeños (portrait) - 320px */
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 480px) {
     .logo{
         margin: 50px 0 0 0;
         height: 120px;
@@ -274,10 +277,12 @@ h1{
         flex-direction: column;
     }
     .footer_logo{
-        margin: 0 25% 0 25%;
+        height: 150px;
+        margin: 20px 25% 20px 25%;
         width: 50%;
     }
     .footer_text{
+        width: 80%;
         margin: 30px 0 0 0;
         text-align: center;
     }
@@ -302,7 +307,7 @@ h1{
     }
 
     .checkbox_input{
-        width: 80%;
+        width: 100%;
     }
     .checkbox_input label{
         font-size: 18px;
@@ -332,32 +337,249 @@ h1{
 
 }
 
-/* Teléfonos pequeños (landscape) - 480px */
-@media screen and (min-width: 321px) and (max-width: 480px) {
-  /* Estilos para teléfonos pequeños en modo paisaje */
+@media screen and (min-width: 481px) and (max-width: 560px) {
+    .logo{
+        margin: 50px 0 0 0;
+        height: 120px;
+    }
+    h1{
+        font-size: 35px;
+    }
+
+    .form_container{
+        width: 80%;
+        margin: 50px 10% 0 10%;
+    }
+    .form_content_container{
+        width: 86%;
+        margin: 0 7% 0 7%;
+        padding: 30px 0 30px 0;
+    }
+    .form_content_container h2{
+        font-size: 35px;
+    }
+    .form_content_container p{
+        font-size: 18px;
+        margin: 15px 0 15px 0;
+    }
+
+    .footer{
+        padding: 30px 0 50px 0;
+        flex-direction: column;
+    }
+    .footer_logo{
+        margin: 0 25% 0 25%;
+        width: 50%;
+    }
+    .footer_text{
+        width: 80%;
+        margin: 30px 0 0 0;
+        text-align: center;
+    }
+    .footer_text h4{
+        font-size: 25px;
+    }
+    .footer_text p{
+        font-size: 18px;
+    }
+
+    .many_inputs_container{
+        flex-direction: column;
+    }
+    .simple_input h4{
+        font-size: 18px;
+    }
+    .double_input{
+        width: 100%;
+    }
+    .triple_input{
+        width: 100%;
+    }
+
+    .checkbox_input{
+        width: 100%;
+    }
+    .checkbox_input label{
+        font-size: 18px;
+    }
+    .many_checkbox_cont h4{
+        font-size: 18px;
+    }
+
+    .continue_button{
+        margin: 40px 0 0 0;
+        padding: 5px 15px 5px 15px;
+        font-size: 23px;
+    }
+    .go_back_button{
+        margin: 40px 0 0 0;
+        padding: 5px 15px 5px 15px;
+        font-size: 23px;
+    }
+
+    .send_check_icon{
+        height: 50px;
+    }
+
+    .screen_4 h2{
+        font-size: 30px;
+    }
 }
 
-/* Tabletas - 768px */
-@media screen and (min-width: 481px) and (max-width: 768px) {
-  /* Estilos para tabletas en modo portrait */
+@media screen and (min-width: 561px) and (max-width: 768px) {
+    .logo{
+        margin: 50px 0 0 0;
+        height: 150px;
+    }
+    h1{
+        font-size: 40px;
+    }
+
+    .form_container{
+        width: 80%;
+        margin: 50px 10% 0 10%;
+    }
+    .form_content_container{
+        width: 86%;
+        margin: 0 7% 0 7%;
+        padding: 30px 0 30px 0;
+    }
+    .form_content_container h2{
+        font-size: 35px;
+    }
+    .form_content_container p{
+        font-size: 18px;
+        margin: 15px 0 15px 0;
+    }
+
+    .footer{
+        padding: 50px 0 50px 0;
+        justify-content: space-between;
+    }
+    .footer_logo{
+        height: 150px;
+        width: 35%;
+    }
+    .footer_text{
+        width: 55%;
+        margin: 0 5% 0 5%;
+    }
+    .footer_text h4{
+        font-size: 25px;
+    }
+    .footer_text p{
+        font-size: 18px;
+    }
+
+    .simple_input h4{
+        font-size: 18px;
+    }
+    .double_input{
+        width: 48%;
+    }
+    .triple_input{
+        width: 32%;
+    }
+
+    .checkbox_input{
+        width: 48%;
+    }
+    .checkbox_input label{
+        font-size: 18px;
+    }
+    .many_checkbox_cont h4{
+        font-size: 18px;
+    }
+
+    .continue_button{
+        margin: 40px 0 0 0;
+        padding: 5px 15px 5px 15px;
+        font-size: 23px;
+    }
+    .go_back_button{
+        margin: 40px 0 0 0;
+        padding: 5px 15px 5px 15px;
+        font-size: 23px;
+    }
+
+    .send_check_icon{
+        height: 50px;
+    }
+
+    .screen_4 h2{
+        font-size: 30px;
+    }
 }
 
-/* Tabletas (landscape) - 1024px */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-  /* Estilos para tabletas en modo paisaje */
-}
+@media screen and (min-width: 769px) and (max-width: 1440px) {
+    .logo{
+        margin: 50px 0 0 0;
+        height: 180px;
+    }
+    h1{
+        font-size: 40px;
+    }
 
-/* Laptops y escritorios - 1200px */
-@media screen and (min-width: 1025px) and (max-width: 1200px) {
-  /* Estilos para laptops y escritorios */
-}
+    .form_container{
+        width: 80%;
+        margin: 50px 10% 0 10%;
+    }
+    .form_content_container{
+        width: 86%;
+        margin: 0 7% 0 7%;
+        padding: 30px 0 30px 0;
+    }
+    .form_content_container h2{
+        font-size: 40px;
+    }
+    .form_content_container p{
+        font-size: 20px;
+        margin: 25px 0 25px 0;
+    }
 
-/* Pantallas grandes - 1440px */
-@media screen and (min-width: 1201px) and (max-width: 1440px) {
-  /* Estilos para pantallas grandes */
-}
+    .footer{
+        padding: 50px 0 50px 0;
+        justify-content: space-between;
+    }
+    .footer_logo{
+        width: 35%;
+    }
+    .footer_text{
+        width: 55%;
+        margin: 0 5% 0 5%;
+    }
+    .footer_text h4{
+        font-size: 25px;
+    }
+    .footer_text p{
+        font-size: 20px;
+    }
 
-/* Pantallas muy grandes - 1600px y más */
-@media screen and (min-width: 1441px) {
-  /* Estilos para pantallas muy grandes */
+    .simple_input h4{
+        font-size: 20px;
+    }
+    .double_input{
+        width: 48%;
+    }
+    .triple_input{
+        width: 32%;
+    }
+
+    .checkbox_input{
+        width: 48%;
+    }
+    .checkbox_input label{
+        font-size: 20px;
+    }
+    .many_checkbox_cont h4{
+        font-size: 18px;
+    }
+
+    .send_check_icon{
+        height: 60px;
+    }
+
+    .screen_4 h2{
+        font-size: 30px;
+    }
 }

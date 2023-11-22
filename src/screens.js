@@ -233,7 +233,7 @@ export const SCREEN_4 = ({ request_body, go_back_func }) => {
         "Your job application is being send."}</h2>
         <p>{sent ?
         "You will receive a message soon!"  : 
-        error ? "please try again. If the error consists, please contact us at contact@eliteglass-services.com":
+        error ? "please try again. If the error persists, please contact us at contact@eliteglass-services.com":
         ""}</p>
         <p>{sent ? "You can close this tab now." :
         error ? "" :
